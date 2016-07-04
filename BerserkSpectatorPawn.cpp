@@ -1,10 +1,14 @@
 #include "Berserk.h"
 #include "BerserkSpectatorPawn.h"
+#include "BerserkCameraComponent.h"
+#include "BerserkSpectatorPawnMovement.h"
 
-ABerserkSpectatorPawn::ABerserkSpectatorPawn()
+ABerserkSpectatorPawn::ABerserkSpectatorPawn(const FObjectInitializer& objectInitializer)
+	: Super(objectInitializer.SetDefaultSubobjectClass<UBerserkSpectatorPawnMovement>(Super::MovementComponentName))
 {
-	PrimaryActorTick.bCanEverTick = true;
-
+	GetCollisionComponent()->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+	bAddDefaultMovementBindings = false;
+	BerserkCameraComponent = CreateDefaultSubobject<UBerserkCameraComponent>(TEXT("BerserkCameraComponent"));
 }
 
 void ABerserkSpectatorPawn::BeginPlay()
@@ -23,5 +27,11 @@ void ABerserkSpectatorPawn::SetupPlayerInputComponent(class UInputComponent* inp
 {
 	Super::SetupPlayerInputComponent(inputComponent);
 
+}
+
+UBerserkCameraComponent* ABerserkSpectatorPawn::GetBerserkCameraComponent()
+{
+	check(BerserkCameraComponent != nullptr);
+	return BerserkCameraComponent;
 }
 
