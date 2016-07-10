@@ -3,32 +3,32 @@
 #include "Camera/CameraComponent.h"
 #include "BerserkCameraComponent.generated.h"
 
-UCLASS(BlueprintType, HideCategories=Trigger, meta=(BlueprintSpawnableComponent))
+UCLASS(config=Game, BlueprintType, HideCategories=Trigger, meta=(BlueprintSpawnableComponent))
 class BERSERK_API UBerserkCameraComponent : public UCameraComponent
 {
 	GENERATED_BODY()
 
 public:
-	UBerserkCameraComponent(const class FObjectInitializer& objectInitializer);
+	UBerserkCameraComponent(const FObjectInitializer& objectInitializer);
 
 	/** How fast the camera moves around when the mouse is at the edge of the screen. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float CameraScrollSpeed;
+	UPROPERTY(config) float CameraScrollSpeed;
 	/** Minimum amount of camera zoom (How close we can get to the map). */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float MinZoomLevel;
+	UPROPERTY(config) float MinZoomLevel;
 	/** Maximum amount of camera zoom (How far we can get from the map). */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float MaxZoomLevel;
+	UPROPERTY(config) float MaxZoomLevel;
 	/** The minimum offset of the camera. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float MinCameraOffset;
+	UPROPERTY(config) float MinCameraOffset;
 	/** The maximum offset of the camera. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float MaxCameraOffset;
+	UPROPERTY(config) float MaxCameraOffset;
 	/** Percentage of minimap where center of camera can be placed. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float MiniMapBoundsLimit;
+	UPROPERTY(config) float MiniMapBoundsLimit;
 	/** The angle to look down on the map. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) FRotator FixedCameraAngle;
+	UPROPERTY(config) FRotator FixedCameraAngle;
 	/** Size of the area at the edge of the screen that will trigger camera scrolling. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) int32 CameraActiveBorder;
+	UPROPERTY(config) int32 CameraActiveBorder;
 	/** If set, camera position will be clamped to movement bounds. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) uint8 bShouldClampCamera : 1;
+	UPROPERTY(config) uint8 bShouldClampCamera : 1;
 
 	/** Bounds for camera movement. */
 	FBox CameraMovementBounds;
@@ -64,8 +64,8 @@ public:
 
 	void OnZoomIn();
 	void OnZoomOut();
-	void MoveVertical(float value);
-	void MoveHorizontal(float value);
+	void MoveForward(float value);
+	void MoveRight(float value);
 
 protected:
 	/* List of zones to exclude from scrolling during the camera movement update. */

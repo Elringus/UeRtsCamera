@@ -4,7 +4,7 @@
 #include "BerserkSpectatorPawnMovement.h"
 #include "BerserkHelpers.h"
 
-UBerserkCameraComponent::UBerserkCameraComponent(const class FObjectInitializer& objectInitializer)
+UBerserkCameraComponent::UBerserkCameraComponent(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)
 {
 	ZoomAlpha = 1.0f;
@@ -80,26 +80,26 @@ void UBerserkCameraComponent::UpdateCameraMovement(const APlayerController* play
 			{
 				const float delta = 1.0f - float(mouseX - viewLeft) / CameraActiveBorder;
 				spectatorCameraSpeed = delta * maxSpeed;
-				MoveHorizontal(-scrollSpeed * delta);
+				MoveRight(-scrollSpeed * delta);
 			}
 			else if (mouseX >= (viewRight - CameraActiveBorder) && mouseX <= viewRight)
 			{
 				const float delta = float(mouseX - viewRight + CameraActiveBorder) / CameraActiveBorder;
 				spectatorCameraSpeed = delta * maxSpeed;
-				MoveHorizontal(scrollSpeed * delta);
+				MoveRight(scrollSpeed * delta);
 			}
 
 			if (mouseY >= viewTop && mouseY <= (viewTop + CameraActiveBorder))
 			{
 				const float delta = 1.0f - float(mouseY - viewTop) / CameraActiveBorder;
 				spectatorCameraSpeed = delta * maxSpeed;
-				MoveVertical(scrollSpeed * delta);
+				MoveForward(scrollSpeed * delta);
 			}
 			else if (mouseY >= (viewBottom - CameraActiveBorder) && mouseY <= viewBottom)
 			{
 				const float delta = float(mouseY - (viewBottom - CameraActiveBorder)) / CameraActiveBorder;
 				spectatorCameraSpeed = delta * maxSpeed;
-				MoveVertical(-scrollSpeed * delta);
+				MoveForward(-scrollSpeed * delta);
 			}
 
 			if (spectatorPawn != nullptr)
@@ -114,7 +114,7 @@ void UBerserkCameraComponent::UpdateCameraMovement(const APlayerController* play
 	NoScrollZones.Empty();
 }
 
-void UBerserkCameraComponent::MoveVertical(float value)
+void UBerserkCameraComponent::MoveForward(float value)
 {
 	auto ownerPawn = GetOwnerPawn();
 	if (ownerPawn != nullptr)
@@ -131,7 +131,7 @@ void UBerserkCameraComponent::MoveVertical(float value)
 	}
 }
 
-void UBerserkCameraComponent::MoveHorizontal(float value)
+void UBerserkCameraComponent::MoveRight(float value)
 {
 	auto ownerPawn = GetOwnerPawn();
 	if (ownerPawn != nullptr)

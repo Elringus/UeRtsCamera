@@ -4,7 +4,7 @@
 #include "BerserkPlayerController.h"
 #include "BerserkSpectatorPawn.h"
 
-ABerserkGameMode::ABerserkGameMode(const class FObjectInitializer& objectInitializer)
+ABerserkGameMode::ABerserkGameMode(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)
 {
 	PlayerControllerClass = ABerserkPlayerController::StaticClass();

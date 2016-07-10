@@ -23,10 +23,35 @@ void ABerserkSpectatorPawn::Tick(float DeltaTime)
 
 }
 
-void ABerserkSpectatorPawn::SetupPlayerInputComponent(class UInputComponent* inputComponent)
+void ABerserkSpectatorPawn::SetupPlayerInputComponent(UInputComponent* inputComponent)
 {
 	Super::SetupPlayerInputComponent(inputComponent);
 
+	InputComponent->BindAction("ZoomIn", IE_Pressed, this, &ABerserkSpectatorPawn::OnMouseScrollDown);
+	InputComponent->BindAction("ZoomOut", IE_Pressed, this, &ABerserkSpectatorPawn::OnMouseScrollUp);
+
+	InputComponent->BindAxis("MoveForward", this, &ABerserkSpectatorPawn::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &ABerserkSpectatorPawn::MoveRight);
+}
+
+void ABerserkSpectatorPawn::MoveForward(float value)
+{
+	BerserkCameraComponent->MoveForward(value);
+}
+
+void ABerserkSpectatorPawn::MoveRight(float value)
+{
+	BerserkCameraComponent->MoveRight(value);
+}
+
+void ABerserkSpectatorPawn::OnMouseScrollUp()
+{
+	BerserkCameraComponent->OnZoomIn();
+}
+
+void ABerserkSpectatorPawn::OnMouseScrollDown()
+{
+	BerserkCameraComponent->OnZoomOut();
 }
 
 UBerserkCameraComponent* ABerserkSpectatorPawn::GetBerserkCameraComponent()

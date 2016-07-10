@@ -4,7 +4,7 @@ class FBerserkHelpers
 {
 public:
 	/** Convert point in screen space to ray in world space. */
-	static bool DeprojectScreenToWorld(const FVector2D& screenPosition, class ULocalPlayer* player, FVector& rayOrigin, FVector& rayDirection);
+	static bool DeprojectScreenToWorld(const FVector2D& screenPosition, ULocalPlayer* player, FVector& rayOrigin, FVector& rayDirection);
 
 	/** Find intersection of ray in world space with ground plane. */
 	static FVector IntersectRayWithPlane(const FVector& rayOrigin, const FVector& rayDirection, const FPlane& plane);

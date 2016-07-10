@@ -12,7 +12,7 @@ class BERSERK_API ABerserkPlayerController : public APlayerController
 	GENERATED_BODY()
 	
 public:
-	ABerserkPlayerController(const class FObjectInitializer& objectInitializer);
+	ABerserkPlayerController(const FObjectInitializer& objectInitializer);
 	
 	virtual void UpdateRotation(float deltaTime) override;
 

@@ -8,7 +8,7 @@ class UBerserkSpectatorPawnMovement : public USpectatorPawnMovement
 	GENERATED_BODY()
 
 public:
-	UBerserkSpectatorPawnMovement(const class FObjectInitializer& objectInitializer);
+	UBerserkSpectatorPawnMovement(const FObjectInitializer& objectInitializer);
 
 	virtual void TickComponent(float deltaTime, enum ELevelTick tickType, FActorComponentTickFunction* tickFunction) override;
 

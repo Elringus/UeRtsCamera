@@ -9,7 +9,7 @@ class BERSERK_API ABerserkGameMode : public AGameMode
 	GENERATED_BODY()
 	
 public:
-	ABerserkGameMode(const class FObjectInitializer& objectInitializer);
+	ABerserkGameMode(const FObjectInitializer& objectInitializer);
 
 	virtual void InitGameState() override;
 	
