@@ -1,7 +1,7 @@
 #include "Berserk.h"
 #include "BerserkSpectatorPawn.h"
-#include "BerserkCameraComponent.h"
 #include "BerserkSpectatorPawnMovement.h"
+#include "../Camera/BerserkCameraComponent.h"
 
 ABerserkSpectatorPawn::ABerserkSpectatorPawn(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer.SetDefaultSubobjectClass<UBerserkSpectatorPawnMovement>(Super::MovementComponentName))

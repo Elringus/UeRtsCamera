@@ -1,6 +1,6 @@
 #include "Berserk.h"
 #include "BerserkCameraComponent.h"
-#include "BerserkSpectatorPawnMovement.h"
+#include "../Pawns/BerserkSpectatorPawnMovement.h"
 #include "../Framework/BerserkGameState.h"
 #include "../Utils/ProjectionUtils.h"
 #include "../Utils/LogUtils.h"

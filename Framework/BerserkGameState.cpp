@@ -1,7 +1,8 @@
 #include "Berserk.h"
 #include "BerserkGameState.h"
+#include "../Camera/WorldCameraBlockingVolume.h"
 
 void ABerserkGameState::BeginPlay()
 {
-	WorldBounds = FBox(FVector(-10000, -10000, -10000), FVector(10000, 10000, 10000));
+	WorldBounds = AWorldCameraBlockingVolume::GetBox(GetWorld());
 }

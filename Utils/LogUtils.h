@@ -6,10 +6,10 @@
 
 static void LogInfo(const FString& text)
 {
-	UE_LOG(LogBerserk, Log, TEXT("[LogBerserk] %s"), *(FString)text);
+	UE_LOG(LogBerserk, Log, TEXT("%s"), *(FString)text);
 }
 
 static void LogWarning(const FString& text)
 {
-	UE_LOG(LogBerserk, Warning, TEXT("[LogBerserk] %s"), *(FString)text);
+	UE_LOG(LogBerserk, Warning, TEXT("%s"), *(FString)text);
 }

@@ -1,7 +1,7 @@
 #include "Berserk.h"
 #include "BerserkSpectatorPawnMovement.h"
-#include "BerserkCameraComponent.h"
 #include "BerserkSpectatorPawn.h"
+#include "../Camera/BerserkCameraComponent.h"
 #include "../Player/BerserkPlayerController.h"
 
 UBerserkSpectatorPawnMovement::UBerserkSpectatorPawnMovement(const FObjectInitializer& objectInitializer)

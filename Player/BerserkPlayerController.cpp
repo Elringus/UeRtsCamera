@@ -1,7 +1,7 @@
 #include "Berserk.h"
 #include "BerserkPlayerController.h"
 #include "../Framework/BerserkGameState.h"
-#include "../Pawns/BerserkCameraComponent.h"
+#include "../Camera/BerserkCameraComponent.h"
 #include "../Pawns/BerserkSpectatorPawn.h"
 #include "../Utils/ProjectionUtils.h"
 #include "../Utils/LogUtils.h"
