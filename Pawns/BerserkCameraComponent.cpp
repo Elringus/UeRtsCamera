@@ -1,8 +1,9 @@
 #include "Berserk.h"
 #include "BerserkCameraComponent.h"
-#include "BerserkGameState.h"
 #include "BerserkSpectatorPawnMovement.h"
-#include "BerserkHelpers.h"
+#include "../Framework/BerserkGameState.h"
+#include "../Utils/ProjectionUtils.h"
+#include "../Utils/LogUtils.h"
 
 UBerserkCameraComponent::UBerserkCameraComponent(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)
@@ -74,6 +75,7 @@ void UBerserkCameraComponent::UpdateCameraMovement(const APlayerController* play
 			if (spectatorPawn->GetMovementComponent() != nullptr)
 				spectatorCameraSpeed = GetDefault<UBerserkSpectatorPawnMovement>(spectatorPawn->GetMovementComponent()->GetClass())->MaxSpeed;
 		}
+
 		if (!isNoScrollZone)
 		{
 			if (mouseX >= viewLeft && mouseX <= (viewLeft + CameraActiveBorder))
@@ -184,7 +186,7 @@ void UBerserkCameraComponent::UpdateCameraBounds(const APlayerController* player
 		auto const* const gameState = GetWorld()->GetGameState<ABerserkGameState>();
 		if (gameState)
 		{
-			FBox const& worldBounds = gameState->WorldBounds;
+			const auto worldBounds = gameState->WorldBounds;
 
 			if (worldBounds.GetSize() != FVector::ZeroVector)
 			{
@@ -194,19 +196,19 @@ void UBerserkCameraComponent::UpdateCameraBounds(const APlayerController* player
 					FVector(worldBounds.Max.X, worldBounds.Min.Y, worldBounds.Max.Z)
 				};
 				const FVector frustumRays[] = {
-					FVector(frustumRayDir.X,  frustumRayDir.Y, frustumRayDir.Z),
+					FVector(frustumRayDir.X, frustumRayDir.Y, frustumRayDir.Z),
 					FVector(frustumRayDir.X, -frustumRayDir.Y, frustumRayDir.Z),
-					FVector(-frustumRayDir.X,  frustumRayDir.Y, frustumRayDir.Z)
+					FVector(-frustumRayDir.X, frustumRayDir.Y, frustumRayDir.Z)
 				};
 
 				// get camera plane for intersections
-				const FPlane cameraPlane = FPlane(playerController->GetFocalLocation(), FVector::UpVector);
+				const auto cameraPlane = FPlane(playerController->GetFocalLocation(), FVector::UpVector);
 
 				// get matching points on camera plane
 				const FVector cameraPlanePoints[3] = {
-					FBerserkHelpers::IntersectRayWithPlane(worldBoundPoints[0], frustumRays[0], cameraPlane)*MiniMapBoundsLimit,
-					FBerserkHelpers::IntersectRayWithPlane(worldBoundPoints[1], frustumRays[1], cameraPlane)*MiniMapBoundsLimit,
-					FBerserkHelpers::IntersectRayWithPlane(worldBoundPoints[2], frustumRays[2], cameraPlane)*MiniMapBoundsLimit
+					FProjectionUtils::IntersectRayWithPlane(worldBoundPoints[0], frustumRays[0], cameraPlane) * MiniMapBoundsLimit,
+					FProjectionUtils::IntersectRayWithPlane(worldBoundPoints[1], frustumRays[1], cameraPlane) * MiniMapBoundsLimit,
+					FProjectionUtils::IntersectRayWithPlane(worldBoundPoints[2], frustumRays[2], cameraPlane) * MiniMapBoundsLimit
 				};
 
 				// create new bounds

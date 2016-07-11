@@ -1,8 +1,9 @@
 #include "Berserk.h"
 #include "BerserkGameMode.h"
 #include "BerserkGameState.h"
-#include "BerserkPlayerController.h"
-#include "BerserkSpectatorPawn.h"
+#include "../Player/BerserkPlayerController.h"
+#include "../Pawns/BerserkSpectatorPawn.h"
+#include "../Utils/LogUtils.h"
 
 ABerserkGameMode::ABerserkGameMode(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer)
@@ -24,6 +25,20 @@ void ABerserkGameMode::InitGameState()
 	}
 }
 
+void ABerserkGameMode::RestartPlayer(AController* newPlayer)
+{
+	const auto startSpot = FindPlayerStart(newPlayer);
+	if (startSpot != nullptr)
+	{
+		InitStartSpot(startSpot, newPlayer);
+
+		const auto newPlayerController = Cast<ABerserkPlayerController>(newPlayer);
+		if (newPlayerController != nullptr)
+			newPlayerController->SetInitialLocationAndRotation(startSpot->GetActorLocation(), startSpot->GetActorRotation());
+	}
+	else LogWarning("Player start not found, failed to restart player.");
+}
+
 void ABerserkGameMode::ExitGame()
 {
 	if (GEngine)
@@ -32,3 +47,4 @@ void ABerserkGameMode::ExitGame()
 		if (playerController) playerController->ConsoleCommand(TEXT("quit"));
 	}
 }
+

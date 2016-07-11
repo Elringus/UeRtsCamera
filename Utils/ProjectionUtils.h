@@ -1,6 +1,6 @@
 #pragma once
 
-class FBerserkHelpers
+class FProjectionUtils
 {
 public:
 	/** Convert point in screen space to ray in world space. */

@@ -1,3 +1,5 @@
 #include "Berserk.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, Berserk, "Berserk" );
+DEFINE_LOG_CATEGORY(LogBerserk);
+
+IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, Berserk, "Berserk");

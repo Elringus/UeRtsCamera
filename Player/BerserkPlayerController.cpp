@@ -1,9 +1,10 @@
 #include "Berserk.h"
 #include "BerserkPlayerController.h"
-#include "BerserkHelpers.h"
-#include "BerserkCameraComponent.h"
-#include "BerserkSpectatorPawn.h"
-#include "BerserkGameState.h"
+#include "../Framework/BerserkGameState.h"
+#include "../Pawns/BerserkCameraComponent.h"
+#include "../Pawns/BerserkSpectatorPawn.h"
+#include "../Utils/ProjectionUtils.h"
+#include "../Utils/LogUtils.h"
 
 ABerserkPlayerController::ABerserkPlayerController(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer), IsInputIgnored(false)

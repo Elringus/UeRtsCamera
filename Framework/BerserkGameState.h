@@ -15,5 +15,8 @@ public:
 
 	/** World bounds for mini map & camera movement. */
 	FBox WorldBounds;
+
+protected:
+	virtual void BeginPlay() override;
 	
 };

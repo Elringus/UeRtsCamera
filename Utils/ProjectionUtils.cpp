@@ -1,7 +1,7 @@
 #include "Berserk.h"
-#include "BerserkHelpers.h"
+#include "ProjectionUtils.h"
 
-bool FBerserkHelpers::DeprojectScreenToWorld(const FVector2D& screenPosition, ULocalPlayer* player, FVector& rayOrigin, FVector& rayDirection)
+bool FProjectionUtils::DeprojectScreenToWorld(const FVector2D& screenPosition, ULocalPlayer* player, FVector& rayOrigin, FVector& rayDirection)
 {
 	if (player != nullptr && player->ViewportClient != nullptr && player->ViewportClient->Viewport != nullptr && player->PlayerController != nullptr)
 	{
@@ -22,7 +22,7 @@ bool FBerserkHelpers::DeprojectScreenToWorld(const FVector2D& screenPosition, UL
 	return false;
 }
 
-FVector FBerserkHelpers::IntersectRayWithPlane(const FVector& rayOrigin, const FVector& rayDirection, const FPlane& plane)
+FVector FProjectionUtils::IntersectRayWithPlane(const FVector& rayOrigin, const FVector& rayDirection, const FPlane& plane)
 {
 	const FVector planeNormal = FVector(plane.X, plane.Y, plane.Z);
 	const FVector planeOrigin = planeNormal * plane.W;
@@ -32,7 +32,7 @@ FVector FBerserkHelpers::IntersectRayWithPlane(const FVector& rayOrigin, const F
 	return rayOrigin + rayDirection * distance;
 }
 
-FCanvasUVTri FBerserkHelpers::CreateCanvasTri(const FVector2D& v0, const FVector2D& v1, const FVector2D& v2)
+FCanvasUVTri FProjectionUtils::CreateCanvasTri(const FVector2D& v0, const FVector2D& v1, const FVector2D& v2)
 {
 	FCanvasUVTri outTri;
 	outTri.V0_Pos = v0;

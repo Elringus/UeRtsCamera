@@ -2,7 +2,7 @@
 #include "BerserkSpectatorPawnMovement.h"
 #include "BerserkCameraComponent.h"
 #include "BerserkSpectatorPawn.h"
-#include "BerserkPlayerController.h"
+#include "../Player/BerserkPlayerController.h"
 
 UBerserkSpectatorPawnMovement::UBerserkSpectatorPawnMovement(const FObjectInitializer& objectInitializer)
 	: Super(objectInitializer), IsInitialLocationSet(false)

@@ -12,6 +12,7 @@ public:
 	ABerserkGameMode(const FObjectInitializer& objectInitializer);
 
 	virtual void InitGameState() override;
+	virtual void RestartPlayer(AController* newPlayer) override;
 	
 	void ExitGame();
 };
